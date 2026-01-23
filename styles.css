@@ -1817,5 +1817,7 @@ section {
 
     .product-card--main .product-card__image {
         margin: 0 auto;
+        max-width: 180px;
+        /* Reduced to fit better inside the card */
     }
 }
