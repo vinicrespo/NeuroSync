@@ -1324,31 +1324,46 @@ section {
 
 .pricing-initial__old-price {
     font-family: 'Space Mono', monospace;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--text-muted);
     text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    /* Thicker strike */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    /* Subtle glow */
+    opacity: 0.8;
 }
 
 .pricing-initial__current {
     display: flex;
     align-items: baseline;
     justify-content: center;
-    gap: 4px;
+    gap: 8px;
+    /* More breathing room */
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .pricing-initial__currency {
     font-family: 'Space Mono', monospace;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    /* Larger currency */
     font-weight: 700;
-    color: var(--accent-success);
+    color: #ff2a6d;
+    /* Magenta */
+    text-shadow: 0 0 15px rgba(255, 42, 109, 0.4);
 }
 
 .pricing-initial__amount {
     font-family: 'Space Mono', monospace;
-    font-size: 4.5rem;
+    font-size: 5.5rem;
+    /* HUGE impact */
     font-weight: 700;
-    color: var(--accent-success);
-    line-height: 1;
+    color: #ff2a6d;
+    /* Magenta */
+    text-shadow: 0 0 25px rgba(255, 42, 109, 0.6);
+    /* Strong glow */
+    line-height: 0.9;
 }
 
 .pricing-initial__cta {
@@ -1642,32 +1657,42 @@ section {
 
 .pricing__old-price {
     font-family: 'Space Mono', monospace;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--text-muted);
     text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    opacity: 0.8;
 }
 
 .pricing__current {
     display: flex;
     align-items: baseline;
     justify-content: center;
-    gap: 4px;
-    margin-bottom: 8px;
+    gap: 8px;
+    margin-bottom: 24px;
+    /* More space below price */
+    margin-top: 12px;
 }
 
 .pricing__currency {
     font-family: 'Space Mono', monospace;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    color: var(--accent-success);
+    color: #ff2a6d;
+    /* Magenta */
+    text-shadow: 0 0 15px rgba(255, 42, 109, 0.4);
 }
 
 .pricing__amount {
     font-family: 'Space Mono', monospace;
-    font-size: 4.5rem;
+    font-size: 5.5rem;
+    /* HUGE impact */
     font-weight: 700;
-    color: var(--accent-success);
-    line-height: 1;
+    color: #ff2a6d;
+    /* Magenta */
+    text-shadow: 0 0 25px rgba(255, 42, 109, 0.6);
+    line-height: 0.9;
 }
 
 .pricing__note {
