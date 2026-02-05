@@ -9,19 +9,28 @@
 
   <title>NeuroSync — Experience Mental Coherence</title>
 
-  <!-- Fonts -->
+  <!-- Fonts (Optimized Loading) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
-    rel="stylesheet">
+    media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+  </noscript>
 
   <!-- Preconnect and DNS Prefetch -->
   <link rel="preconnect" href="https://player.vturb.com.br">
   <link rel="preconnect" href="https://api.vturb.com.br">
-  <link rel="preconnect" href="https://tracking.utmify.com.br">
+  <link rel="preconnect" href="https://cdn.converteai.net">
+  <link rel="preconnect" href="https://vt-h-1.b-cdn.net">
   <link rel="preconnect" href="https://api8.ipify.org">
   <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://tracking.utmify.com.br">
+
   <link rel="dns-prefetch" href="https://player.vturb.com.br">
   <link rel="dns-prefetch" href="https://api.vturb.com.br">
   <link rel="dns-prefetch" href="https://cdn.converteai.net">
@@ -91,10 +100,12 @@
 
     .vsl-container {
       width: 100%;
-      max-width: 600px;
+      max-width: 800px;
       margin: 0 auto 40px;
       position: relative;
       z-index: 1;
+      aspect-ratio: 16 / 9;
+      background: #000;
     }
 
     .vsl-frame {
@@ -175,6 +186,7 @@
       .vsl-container {
         max-width: 100%;
         padding: 0;
+        aspect-ratio: 16 / 9;
       }
 
       .warning-message {
@@ -600,7 +612,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="scripts.js"></script>
+  <!-- Scripts -->
+  <script defer src="scripts.js"></script>
 </body>
 
 </html>
