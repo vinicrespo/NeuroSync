@@ -262,37 +262,61 @@
         const container = document.querySelector('.vsl-container');
         if (!container) return;
 
-        function updateRatio(iframe) {
-          if (!iframe) return;
-          const w = parseInt(iframe.getAttribute('width'));
-          const h = parseInt(iframe.getAttribute('height'));
-          if (w && h) {
+        // Helper to validate and apply ratio
+        function tryUpdate() {
+          const iframe = container.querySelector('iframe');
+          if (!iframe) return false;
+
+          let w = iframe.getAttribute('width');
+          let h = iframe.getAttribute('height');
+
+          // If strictly % or missing, try styles or wait
+          if ((!w || w.includes('%')) && (!h || h.includes('%'))) {
+            // Try style
+            if (iframe.style.width && iframe.style.width.includes('px')) w = parseInt(iframe.style.width);
+            if (iframe.style.height && iframe.style.height.includes('px')) h = parseInt(iframe.style.height);
+          } else {
+            w = parseInt(w);
+            h = parseInt(h);
+          }
+
+          if (w && h && !isNaN(w) && !isNaN(h) && (w > 100 && h > 100)) {
+            // Valid dimensions found (ignoring small 100x100 placeholders)
+            const ratio = w / h;
             container.style.aspectRatio = `${w} / ${h}`;
-            // Adjust max-width: 500px for vertical (phone), 800px for square/horizontal (desktop friendly)
-            if (w >= h) {
+
+            // Heuristic: If close to square (0.9 - 1.1) or horizontal (>1), treat as desktop-width friendly
+            if (ratio > 0.8) {
               container.style.maxWidth = '800px';
+              // container.style.aspectRatio = '1 / 1'; // Optional: force clean square if close
             } else {
+              // Vertical (e.g. 9/16 = 0.56)
               container.style.maxWidth = '500px';
             }
+            return true; // Success
           }
+          return false; // Not found yet
         }
 
+        // 1. Observer for iframe insertion
         const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-              if (node.tagName === 'IFRAME' || (node.tagName === 'DIV' && node.querySelector('iframe'))) {
-                const iframe = node.tagName === 'IFRAME' ? node : node.querySelector('iframe');
-                updateRatio(iframe);
-              }
-            });
+            if (mutation.addedNodes.length) tryUpdate();
           });
         });
-
         observer.observe(container, { childList: true, subtree: true });
 
-        // Initial check in case it's already there
-        const existingIframe = container.querySelector('iframe');
-        if (existingIframe) updateRatio(existingIframe);
+        // 2. Polling fallback (every 200ms for 5 seconds) to catch late attribute updates by VTurb
+        let attempts = 0;
+        const interval = setInterval(() => {
+          if (tryUpdate() || attempts > 25) {
+            clearInterval(interval);
+          }
+          attempts++;
+        }, 200);
+
+        // Initial try
+        tryUpdate();
       })();
     </script>
   </section>
