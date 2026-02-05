@@ -262,61 +262,84 @@
         const container = document.querySelector('.vsl-container');
         if (!container) return;
 
-        // Helper to validate and apply ratio
-        function tryUpdate() {
-          const iframe = container.querySelector('iframe');
-          if (!iframe) return false;
+        let found = false;
 
-          let w = iframe.getAttribute('width');
-          let h = iframe.getAttribute('height');
+        function applyRatio(ratio) {
+          if (!ratio || isNaN(ratio)) return;
+          found = true;
 
-          // If strictly % or missing, try styles or wait
-          if ((!w || w.includes('%')) && (!h || h.includes('%'))) {
-            // Try style
-            if (iframe.style.width && iframe.style.width.includes('px')) w = parseInt(iframe.style.width);
-            if (iframe.style.height && iframe.style.height.includes('px')) h = parseInt(iframe.style.height);
+          // Apply to container
+          container.style.aspectRatio = `${ratio}`; // e.g. "0.5625" or "1"
+
+          if (ratio > 0.8) {
+            // Square (1.0) or Horizontal (>1.0)
+            container.style.maxWidth = '800px';
           } else {
-            w = parseInt(w);
-            h = parseInt(h);
+            // Vertical (0.5625 aka 9/16)
+            container.style.maxWidth = '500px';
           }
-
-          if (w && h && !isNaN(w) && !isNaN(h) && (w > 100 && h > 100)) {
-            // Valid dimensions found (ignoring small 100x100 placeholders)
-            const ratio = w / h;
-            container.style.aspectRatio = `${w} / ${h}`;
-
-            // Heuristic: If close to square (0.9 - 1.1) or horizontal (>1), treat as desktop-width friendly
-            if (ratio > 0.8) {
-              container.style.maxWidth = '800px';
-              // container.style.aspectRatio = '1 / 1'; // Optional: force clean square if close
-            } else {
-              // Vertical (e.g. 9/16 = 0.56)
-              container.style.maxWidth = '500px';
-            }
-            return true; // Success
-          }
-          return false; // Not found yet
         }
 
-        // 1. Observer for iframe insertion
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length) tryUpdate();
-          });
-        });
+        function check() {
+          if (found) return;
+
+          // 1. Check for responsive wrapper method (padding-top/bottom %)
+          // VTurb/SmartPlayer often wraps iframe in a div with padding-top % for ratio
+          const children = container.querySelectorAll('div');
+          for (let div of children) {
+            const style = window.getComputedStyle(div);
+            // Check padding-top or padding-bottom
+            // We look for a percentage-like value. Computed style usually returns px, but inline style might be %
+            // Actually, we should check inline style specifically for the responsive hack.
+            let pt = div.style.paddingTop;
+            let pb = div.style.paddingBottom;
+
+            let val = pt || pb;
+            if (val && val.includes('%')) {
+              const num = parseFloat(val);
+              if (num > 0) {
+                // padding % is height/width * 100.
+                // So aspect_ratio (width/height) = 100 / num
+                // Ex: 100% padding -> 100/100 = 1 (Square)
+                // Ex: 177.77% padding -> 100/177.77 = 0.56 (9/16)
+                // Ex: 56.25% padding -> 100/56.25 = 1.77 (16/9)
+                const ratio = 100 / num;
+                applyRatio(ratio);
+                return;
+              }
+            }
+          }
+
+          // 2. Fallback: Check iframe attributes (as before)
+          const iframe = container.querySelector('iframe');
+          if (iframe) {
+            let w = iframe.getAttribute('width');
+            let h = iframe.getAttribute('height');
+
+            // Normalize
+            if (w && w.includes('px')) w = parseFloat(w);
+            if (h && h.includes('px')) h = parseFloat(h);
+
+            if (w && h && !isNaN(w) && !isNaN(h) && w > 50 && h > 50 && String(w).indexOf('%') === -1) {
+              applyRatio(w / h);
+              return;
+            }
+          }
+        }
+
+        // Observer
+        const observer = new MutationObserver(() => check());
         observer.observe(container, { childList: true, subtree: true });
 
-        // 2. Polling fallback (every 200ms for 5 seconds) to catch late attribute updates by VTurb
+        // Poll
         let attempts = 0;
         const interval = setInterval(() => {
-          if (tryUpdate() || attempts > 25) {
-            clearInterval(interval);
-          }
+          check();
+          if (found || attempts > 30) clearInterval(interval);
           attempts++;
         }, 200);
 
-        // Initial try
-        tryUpdate();
+        check();
       })();
     </script>
   </section>
