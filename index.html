@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Vision 2026 - Educational Presentation on Eye Health">
     <title>2026 Vision 20 Presentation</title>
 
@@ -30,41 +30,69 @@
 
 <body>
 
-    <!-- Main Container -->
+    <!-- Main Flex Container (Full Screen) -->
     <main class="main-container">
 
-        <!-- Hero Section -->
-        <section class="hero-section">
+        <!-- Header Area -->
+        <header class="header-compact">
             <h1 class="main-headline">“Is Your Vision Changing? Watch This Short Presentation.”</h1>
             <p class="sub-headline">“Discover what may be affecting your eyesight — and a simple method you can start
                 today.”</p>
+        </header>
 
-            <div class="video-card">
-                <!-- Video Container -->
-                <div class="video-wrapper">
-                    <div id="vsl-container" class="vsl-container">
-                        <vturb-smartplayer id="vid-698ccec711e55d52a5bdc3a6"
-                            style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer>
-                        <script
-                            type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/players/698ccec711e55d52a5bdc3a6/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
-                    </div>
-                </div>
-
-                <!-- CTA Section (Attached to Video) -->
-                <div class="cta-wrapper">
-                    <a href="#checkout" class="cta-button">Secure Your Access</a>
+        <!-- Video Area -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <div id="vsl-container" class="vsl-container">
+                    <vturb-smartplayer id="vid-698ccec711e55d52a5bdc3a6"
+                        style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer>
+                    <script
+                        type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/players/698ccec711e55d52a5bdc3a6/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Spacer -->
-        <div style="height: 40px;"></div>
+        <!-- CTA Area -->
+        <div class="cta-section">
+            <a href="#checkout" class="cta-button">Secure Your Access</a>
+        </div>
+
+        <!-- Identification Block (Minimalist) -->
+        <div class="identification-block">
+            <p class="symptoms-title">If any of these feel familiar… keep watching.</p>
+            <ul class="symptoms-list">
+                <li>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14" />
+                    </svg>
+                    <span>Holding your phone farther away to read</span>
+                </li>
+                <li>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                    <span>Eyes feeling tired after screens</span>
+                </li>
+                <li>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                    <span>Needing brighter light to see clearly</span>
+                </li>
+                <li>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <span>Small text looking more blurry</span>
+                </li>
+            </ul>
+        </div>
 
     </main>
-
-    <!-- Footer Removed per request -->
-    <footer class="site-footer" style="display: none;">
-    </footer>
 
     <script src="script.js"></script>
 </body>

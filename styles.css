@@ -7,7 +7,8 @@
     --soft-white: #F8F9FA;
     --text-dark: #222222;
     --text-light: #555555;
-    --container-max-width: 800px;
+    --container-max-width: 600px;
+    /* Narrower for mobile optimization */
 }
 
 * {
@@ -16,188 +17,212 @@
     padding: 0;
 }
 
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    /* Prevent scrolling */
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--soft-white);
     color: var(--text-dark);
-    line-height: 1.6;
+    line-height: 1.4;
     -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    /* Slightly smaller base font */
 }
 
-/* Layout Utilities */
+/* Flex Container for One Screen Layout */
 .main-container {
     max-width: var(--container-max-width);
+    height: 100%;
     margin: 0 auto;
-    padding: 20px 16px;
-    /* Mobile padding */
+    padding: 10px 16px;
+    /* Tight padding */
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    /* Distribute space */
     align-items: center;
 }
 
-/* Typography */
-h1,
-h2,
-h3 {
-    color: var(--primary-blue);
-}
-
-/* Hero Section */
-.hero-section {
+/* Header Area (Compact) */
+.header-compact {
     text-align: center;
-    width: 100%;
-    margin-top: 20px;
+    flex: 0 0 auto;
+    margin-bottom: 8px;
 }
 
 .main-headline {
-    font-size: 1.8rem;
-    /* Mobile first size */
+    font-size: 1.3rem;
+    /* Compact headline */
     font-weight: 700;
-    margin-bottom: 12px;
-    line-height: 1.3;
+    line-height: 1.2;
     letter-spacing: -0.01em;
-    position: relative;
-    display: inline-block;
-}
-
-/* Golden underline accent */
-.main-headline::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: var(--accent-gold);
-    margin: 12px auto 0;
-    border-radius: 2px;
-    opacity: 0.8;
+    color: var(--primary-blue);
+    margin-bottom: 6px;
 }
 
 .sub-headline {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--text-light);
-    margin-bottom: 24px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 10px;
+    line-height: 1.3;
+    padding: 0 5px;
 }
 
-/* Video Card Container - Removed Background per request */
-.video-card {
-    background: transparent;
-    border-radius: 16px;
-    box-shadow: none;
-    padding: 0;
-    overflow: visible;
-    position: relative;
-    margin-bottom: 20px;
-    border: none;
+/* Video Section */
+.video-section {
+    width: 100%;
+    flex: 0 1 auto;
+    /* Allow shrinking if needed */
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .video-wrapper {
     width: 100%;
     background-color: #000;
     position: relative;
-    border-radius: 16px;
-    /* Rounded corners for video */
+    border-radius: 12px;
     overflow: hidden;
-    /* Clips the video to the rounded corners */
-    box-shadow: 0 10px 40px rgba(11, 37, 69, 0.15);
-    /* Shadow applied to video directly */
+    box-shadow: 0 4px 20px rgba(11, 37, 69, 0.15);
+    /* Forcing aspect ratio handled by player, but max-height constraint useful */
+    max-height: 35vh;
+    /* Limit video height on tall screens */
 }
 
 .vsl-container {
-    position: relative;
     width: 100%;
 }
 
-/* CTA Wrapper attached to video */
-.cta-wrapper {
-    padding: 24px 0;
-    /* Remove side padding to align with video width */
+/* CTA Section */
+.cta-section {
+    width: 100%;
     text-align: center;
-    background: transparent;
-    border: none;
+    margin-bottom: 10px;
+    flex: 0 0 auto;
 }
 
 .cta-button {
     display: block;
-    /* Full width block on mobile */
     width: 100%;
-    max-width: 400px;
-    /* Constraint width */
+    max-width: 380px;
     margin: 0 auto;
     background-color: var(--primary-blue);
     color: #fff;
-    padding: 20px 24px;
-    font-size: 1.25rem;
+    padding: 14px 20px;
+    font-size: 1.1rem;
     font-weight: 700;
     text-decoration: none;
-    border-radius: 12px;
-    /* Slightly rounded */
+    border-radius: 50px;
+    /* Pill shape looks cleaner compact */
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(11, 37, 69, 0.25);
+    box-shadow: 0 4px 10px rgba(11, 37, 69, 0.2);
     line-height: 1.2;
 }
 
 .cta-button:hover {
     background-color: #0F3057;
-    /* Slightly darker */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(11, 37, 69, 0.35);
+    transform: translateY(-1px);
 }
 
-.cta-button:active {
-    transform: translateY(0);
-}
-
-/* Footer (Minimal) */
-.site-footer {
-    padding: 40px 20px;
+/* Identification Block (Minimalist) */
+.identification-block {
     width: 100%;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 10px 15px;
+    border: 1px solid rgba(11, 37, 69, 0.08);
+    /* Subtle border */
+    flex: 0 0 auto;
+    /* Don't shrink too much */
+    margin-bottom: 5px;
+    /* Bottom spacing */
+}
+
+.symptoms-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-blue);
     text-align: center;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+}
+
+.symptoms-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.symptoms-list li {
+    display: flex;
+    align-items: center;
     font-size: 0.85rem;
-    color: #888;
-    background-color: transparent;
-    /* Clean */
+    color: var(--text-dark);
 }
 
-.footer-content {
-    max-width: 600px;
-    margin: 0 auto;
+.icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+    color: var(--accent-gold);
+    /* Gold checkmarks/icons */
+    flex-shrink: 0;
 }
 
-.copyright {
-    margin-bottom: 20px;
-    font-weight: 500;
-    color: #666;
-}
-
-.medical-disclaimer {
-    font-size: 0.75rem;
-    color: #999;
-    line-height: 1.5;
-}
-
-/* Responsive Adjustments */
-@media (min-width: 768px) {
+/* Responsive Adjustments for taller screens */
+@media (min-height: 700px) {
     .main-headline {
-        font-size: 2.4rem;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
     }
 
     .sub-headline {
-        font-size: 1.2rem;
-        margin-bottom: 32px;
-    }
-
-    .video-card {
-        padding: 0;
-        /* Ensures flush video */
+        font-size: 1rem;
+        margin-bottom: 10px;
     }
 
     .cta-button {
-        display: inline-block;
-        width: 90%;
-        padding: 22px 40px;
+        padding: 16px 24px;
+        font-size: 1.2rem;
+    }
+
+    .video-wrapper {
+        max-height: 40vh;
+    }
+
+    .identification-block {
+        padding: 15px 20px;
+    }
+
+    .symptoms-list {
+        gap: 8px;
+    }
+
+    .symptoms-list li {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 768px) {
+
+    /* Center everything nicely on desktop */
+    .main-container {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .video-wrapper {
+        max-width: 500px;
+        /* Don't let video get huge */
     }
 }
