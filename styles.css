@@ -18,70 +18,80 @@
 
 html,
 body {
-    height: 100%;
-    overflow: hidden;
-    /* Prevent scrolling */
+    min-height: 100%;
+    /* Allow scrolling if content overflows naturally */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--soft-white);
     color: var(--text-dark);
-    line-height: 1.4;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    font-size: 14px;
+    font-size: 16px;
+    /* Back to standard readable size */
 }
 
-/* Flex Container for One Screen Layout */
+/* Flex Container for Balanced Layout */
 .main-container {
     max-width: var(--container-max-width);
-    height: 100vh;
-    max-height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
-    padding: 10px 16px;
-    /* Tight padding */
+    padding: 40px 20px;
+    /* More generous padding like screenshot */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    /* Stack from top to avoid gaps */
     align-items: center;
-    gap: 10px;
-    /* Small consistent gap */
+    /* Removed justify-content: space-between to allow natural flow */
+    gap: 24px;
+    /* Increased gap for breathing room */
 }
 
-/* Header Area (Compact) */
+/* Header Area */
 .header-compact {
     text-align: center;
-    flex: 0 0 auto;
-    margin-bottom: 5px;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .main-headline {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    /* Larger again */
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.3;
     letter-spacing: -0.01em;
     color: var(--primary-blue);
-    margin-bottom: 4px;
+    margin-bottom: 16px;
+    /* Space for separator */
+}
+
+.headline-separator {
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-gold);
+    margin: 0 auto 20px;
+    /* Centered with bottom margin */
+    border-radius: 2px;
 }
 
 .sub-headline {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: var(--text-light);
-    line-height: 1.3;
-    padding: 0 5px;
+    line-height: 1.5;
+    padding: 0 10px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 /* Video Section */
 .video-section {
     width: 100%;
-    flex: 0 1 auto;
-    /* Allow shrinking */
-    margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .video-wrapper {
@@ -91,8 +101,7 @@ body {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(11, 37, 69, 0.15);
-    max-height: 32vh;
-    /* Strict height limit */
+    /* No strict max-height constraint, let aspect ratio rule */
 }
 
 .vsl-container {
@@ -103,56 +112,58 @@ body {
 .cta-section {
     width: 100%;
     text-align: center;
-    margin-bottom: 5px;
-    flex: 0 0 auto;
+    margin-bottom: 20px;
 }
 
 .cta-button {
     display: block;
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
     margin: 0 auto;
     background-color: var(--primary-blue);
     color: #fff;
-    padding: 12px 20px;
-    font-size: 1.05rem;
+    padding: 18px 24px;
+    /* Larger button padding */
+    font-size: 1.25rem;
     font-weight: 700;
     text-decoration: none;
-    border-radius: 50px;
+    border-radius: 12px;
+    /* Slightly less rounded than pill, matches common button style */
     transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(11, 37, 69, 0.2);
+    box-shadow: 0 4px 12px rgba(11, 37, 69, 0.25);
     line-height: 1.2;
 }
 
 .cta-button:hover {
     background-color: #0F3057;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(11, 37, 69, 0.35);
 }
 
-/* Identification Block (Minimalist) */
+/* Identification Block (Minimalist - Replaces Footer) */
 .identification-block {
     width: 100%;
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 10px 12px;
-    border: 1px solid rgba(11, 37, 69, 0.08);
-    flex: 0 0 auto;
-    margin-bottom: 0;
+    /* No background card style, clean text like footer area */
+    background-color: transparent;
+    border-radius: 0;
+    padding: 20px 10px;
+    border: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Center content */
+    margin-top: auto;
+    /* Push to bottom if space permits */
 }
 
 .symptoms-title {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: var(--primary-blue);
+    color: #6c757d;
+    /* Muted grey like footer text */
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    opacity: 0.9;
+    letter-spacing: 1px;
 }
 
 .symptoms-list {
@@ -160,70 +171,45 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 12px;
     width: 100%;
-    max-width: 320px;
-    /* Constrain width for centering look */
+    max-width: 350px;
 }
 
 .symptoms-list li {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-size: 0.8rem;
-    color: var(--text-dark);
-    line-height: 1.2;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    /* Softer text color */
+    line-height: 1.4;
 }
 
 .icon {
-    width: 14px;
-    height: 14px;
-    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    margin-right: 12px;
     color: var(--accent-gold);
     flex-shrink: 0;
 }
 
-/* Responsive Adjustments for taller screens */
-@media (min-height: 700px) {
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .main-container {
+        padding: 60px 20px;
+        gap: 40px;
+    }
+
     .main-headline {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
+        font-size: 2.2rem;
     }
 
     .sub-headline {
-        font-size: 1rem;
-        margin-bottom: 10px;
-    }
-
-    .cta-button {
-        padding: 16px 24px;
         font-size: 1.2rem;
     }
 
     .video-wrapper {
-        max-height: 40vh;
-    }
-
-    .identification-block {
-        padding: 15px 20px;
-    }
-
-    .symptoms-list {
-        gap: 8px;
-    }
-
-    .symptoms-list li {
-        font-size: 0.9rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .main-container {
-        justify-content: center;
-        gap: 24px;
-    }
-
-    .video-wrapper {
-        max-width: 500px;
+        max-width: 600px;
     }
 }
