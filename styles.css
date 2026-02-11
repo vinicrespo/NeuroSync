@@ -82,39 +82,42 @@ h3 {
     padding: 0 10px;
 }
 
-/* Video Card Container */
+/* Video Card Container - Removed Background per request */
 .video-card {
-    background: #fff;
+    background: transparent;
     border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(11, 37, 69, 0.08);
-    /* Subtle blue tinted shadow */
+    box-shadow: none;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     margin-bottom: 20px;
-    /* Soft gradient overlay behind */
-    background: linear-gradient(180deg, #ffffff 0%, #f4f6f9 100%);
-    border: 1px solid rgba(11, 37, 69, 0.05);
+    border: none;
 }
 
 .video-wrapper {
     width: 100%;
     background-color: #000;
     position: relative;
+    border-radius: 16px;
+    /* Rounded corners for video */
+    overflow: hidden;
+    /* Clips the video to the rounded corners */
+    box-shadow: 0 10px 40px rgba(11, 37, 69, 0.15);
+    /* Shadow applied to video directly */
 }
 
 .vsl-container {
     position: relative;
-    /* Aspect ratio handled by VTurb player usually, but can enforce min-height if needed */
     width: 100%;
 }
 
 /* CTA Wrapper attached to video */
 .cta-wrapper {
-    padding: 24px 20px;
+    padding: 24px 0;
+    /* Remove side padding to align with video width */
     text-align: center;
-    background: #fff;
-    border-top: 1px solid rgba(0, 0, 0, 0.03);
+    background: transparent;
+    border: none;
 }
 
 .cta-button {
