@@ -112,7 +112,8 @@ body {
 .cta-section {
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    /* Reduced from 20px */
 }
 
 .cta-button {
@@ -151,8 +152,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: auto;
-    /* Push to bottom if space permits */
+    margin-top: 0;
+    /* Removed auto to reduce spacing */
 }
 
 .symptoms-title {
