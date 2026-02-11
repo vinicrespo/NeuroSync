@@ -72,7 +72,12 @@ export default function DailyContent() {
     const day = getDayContent(currentDay);
 
     const handleNext = () => {
-        if (currentDay < 180) {
+        // Validation: user cannot go to next phase via "Next" button
+        const isPhaseEnd = currentDay % 30 === 0;
+
+        if (isPhaseEnd) {
+            navigate('/app/phases');
+        } else if (currentDay < 180) {
             navigate(`/app/day/${currentDay + 1}`);
         } else {
             navigate('/app/home');
@@ -80,14 +85,24 @@ export default function DailyContent() {
     };
 
     const handlePrev = () => {
-        if (currentDay > 1) {
+        // Validation: user cannot go to previous phase via "Prev" button
+        const isPhaseStart = (currentDay - 1) % 30 === 0;
+
+        if (currentDay > 1 && !isPhaseStart) {
             navigate(`/app/day/${currentDay - 1}`);
         }
     };
 
+    const isPhaseEnd = currentDay % 30 === 0;
+    const isPhaseStart = (currentDay - 1) % 30 === 0;
+
     return (
         <div className="min-h-screen bg-light">
             <main className="max-w-3xl mx-auto px-6 py-10 mt-[60px]">
+                <Button variant="ghost" size="sm" onClick={() => navigate('/app/phases')} className="mb-6 pl-0">
+                    ← Back to Phases
+                </Button>
+
                 {/* Breadcrumb */}
                 <div className="text-xs uppercase text-text-muted mb-2 tracking-wide font-semibold">
                     Phase {Math.ceil(currentDay / 30)} &gt; Day {currentDay}
@@ -163,8 +178,8 @@ export default function DailyContent() {
                     <Button
                         variant="outline"
                         onClick={handlePrev}
-                        disabled={currentDay <= 1}
-                        className={currentDay <= 1 ? 'opacity-0' : ''}
+                        disabled={currentDay <= 1 || isPhaseStart}
+                        className={currentDay <= 1 || isPhaseStart ? 'opacity-0' : ''}
                     >
                         ← Previous Day
                     </Button>
@@ -173,7 +188,7 @@ export default function DailyContent() {
                         variant="primary"
                         onClick={handleNext}
                     >
-                        {currentDay === 180 ? 'Complete Program' : 'Next Day →'}
+                        {isPhaseEnd ? 'Complete Phase' : currentDay === 180 ? 'Complete Program' : 'Next Day →'}
                     </Button>
                 </div>
             </main>
