@@ -8,7 +8,6 @@
     --text-dark: #222222;
     --text-light: #555555;
     --container-max-width: 600px;
-    /* Narrower for mobile optimization */
 }
 
 * {
@@ -31,42 +30,44 @@ body {
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
     font-size: 14px;
-    /* Slightly smaller base font */
 }
 
 /* Flex Container for One Screen Layout */
 .main-container {
     max-width: var(--container-max-width);
-    height: 100%;
+    height: 100vh;
+    max-height: 100vh;
     margin: 0 auto;
     padding: 10px 16px;
     /* Tight padding */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    /* Distribute space */
+    justify-content: flex-start;
+    /* Stack from top to avoid gaps */
     align-items: center;
+    gap: 10px;
+    /* Small consistent gap */
 }
 
 /* Header Area (Compact) */
 .header-compact {
     text-align: center;
     flex: 0 0 auto;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 .main-headline {
-    font-size: 1.3rem;
-    /* Compact headline */
+    font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.01em;
     color: var(--primary-blue);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .sub-headline {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-light);
     line-height: 1.3;
     padding: 0 5px;
@@ -76,8 +77,8 @@ body {
 .video-section {
     width: 100%;
     flex: 0 1 auto;
-    /* Allow shrinking if needed */
-    margin-bottom: 8px;
+    /* Allow shrinking */
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,9 +91,8 @@ body {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(11, 37, 69, 0.15);
-    /* Forcing aspect ratio handled by player, but max-height constraint useful */
-    max-height: 35vh;
-    /* Limit video height on tall screens */
+    max-height: 32vh;
+    /* Strict height limit */
 }
 
 .vsl-container {
@@ -103,23 +103,22 @@ body {
 .cta-section {
     width: 100%;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     flex: 0 0 auto;
 }
 
 .cta-button {
     display: block;
     width: 100%;
-    max-width: 380px;
+    max-width: 350px;
     margin: 0 auto;
     background-color: var(--primary-blue);
     color: #fff;
-    padding: 14px 20px;
-    font-size: 1.1rem;
+    padding: 12px 20px;
+    font-size: 1.05rem;
     font-weight: 700;
     text-decoration: none;
     border-radius: 50px;
-    /* Pill shape looks cleaner compact */
     transition: all 0.2s ease;
     box-shadow: 0 4px 10px rgba(11, 37, 69, 0.2);
     line-height: 1.2;
@@ -135,24 +134,25 @@ body {
     width: 100%;
     background-color: #fff;
     border-radius: 12px;
-    padding: 10px 15px;
+    padding: 10px 12px;
     border: 1px solid rgba(11, 37, 69, 0.08);
-    /* Subtle border */
     flex: 0 0 auto;
-    /* Don't shrink too much */
-    margin-bottom: 5px;
-    /* Bottom spacing */
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center content */
 }
 
 .symptoms-title {
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--primary-blue);
     text-align: center;
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .symptoms-list {
@@ -161,13 +161,18 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    width: 100%;
+    max-width: 320px;
+    /* Constrain width for centering look */
 }
 
 .symptoms-list li {
     display: flex;
     align-items: center;
-    font-size: 0.85rem;
+    justify-content: flex-start;
+    font-size: 0.8rem;
     color: var(--text-dark);
+    line-height: 1.2;
 }
 
 .icon {
@@ -175,7 +180,6 @@ body {
     height: 14px;
     margin-right: 10px;
     color: var(--accent-gold);
-    /* Gold checkmarks/icons */
     flex-shrink: 0;
 }
 
@@ -214,15 +218,12 @@ body {
 }
 
 @media (min-width: 768px) {
-
-    /* Center everything nicely on desktop */
     .main-container {
         justify-content: center;
-        gap: 20px;
+        gap: 24px;
     }
 
     .video-wrapper {
         max-width: 500px;
-        /* Don't let video get huge */
     }
 }
