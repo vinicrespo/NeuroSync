@@ -28,18 +28,232 @@
     <!-- VTurb Optimization -->
     <script>!function (i, n) { i._plt = i._plt || (n && n.timeOrigin ? n.timeOrigin + n.now() : Date.now()) }(window, performance);</script>
     <link rel="preload"
-        href="https://scripts.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/players/698ccec711e55d52a5bdc3a6/v4/player.js"
+        href="https://scripts.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/players/698fa1e79256726183ca6857/v4/player.js"
         as="script">
     <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-    <link rel="preload"
-        href="https://cdn.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/698ccd7b8f7f5267ea02793b/main.m3u8"
-        as="fetch">
     <link rel="dns-prefetch" href="https://cdn.converteai.net">
     <link rel="dns-prefetch" href="https://scripts.converteai.net">
     <link rel="dns-prefetch" href="https://images.converteai.net">
     <link rel="dns-prefetch" href="https://api.vturb.com.br">
 
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Reset & Base Styles */
+        :root {
+            --primary-blue: #0B2545;
+            /* Soft Deep Blue */
+            --accent-gold: #F2C94C;
+            /* Soft Gold/Yellow */
+            --soft-white: #F8F9FA;
+            --text-dark: #222222;
+            --text-light: #555555;
+            --container-max-width: 600px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+            /* Allow scrolling if content overflows naturally */
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--soft-white);
+            color: var(--text-dark);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            font-size: 16px;
+            /* Back to standard readable size */
+        }
+
+        /* Flex Container for Balanced Layout */
+        .main-container {
+            max-width: var(--container-max-width);
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 40px 20px;
+            /* More generous padding like screenshot */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Removed justify-content: space-between to allow natural flow */
+            gap: 24px;
+            /* Increased gap for breathing room */
+        }
+
+        /* Header Area */
+        .header-compact {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .main-headline {
+            font-size: 1.5rem;
+            /* Larger again */
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+            /* Space for separator */
+        }
+
+        .headline-separator {
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 0 auto 20px;
+            /* Centered with bottom margin */
+            border-radius: 2px;
+        }
+
+        .sub-headline {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            padding: 0 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Video Section */
+        .video-section {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            background-color: #000;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(11, 37, 69, 0.15);
+            /* No strict max-height constraint, let aspect ratio rule */
+        }
+
+        .vsl-container {
+            width: 100%;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+            /* Reduced from 20px */
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: var(--primary-blue);
+            color: #fff;
+            padding: 18px 24px;
+            /* Larger button padding */
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 12px;
+            /* Slightly less rounded than pill, matches common button style */
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(11, 37, 69, 0.25);
+            line-height: 1.2;
+        }
+
+        .cta-button:hover {
+            background-color: #0F3057;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(11, 37, 69, 0.35);
+        }
+
+        /* Identification Block (Minimalist - Replaces Footer) */
+        .identification-block {
+            width: 100%;
+            /* No background card style, clean text like footer area */
+            background-color: transparent;
+            border-radius: 0;
+            padding: 20px 10px;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0;
+            /* Removed auto to reduce spacing */
+        }
+
+        .symptoms-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #6c757d;
+            /* Muted grey like footer text */
+            text-align: center;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .symptoms-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .symptoms-list li {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            /* Softer text color */
+            line-height: 1.4;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 12px;
+            color: var(--accent-gold);
+            flex-shrink: 0;
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            .main-container {
+                padding: 60px 20px;
+                gap: 40px;
+            }
+
+            .main-headline {
+                font-size: 2.2rem;
+            }
+
+            .sub-headline {
+                font-size: 1.2rem;
+            }
+
+            .video-wrapper {
+                max-width: 600px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -59,10 +273,10 @@
         <div class="video-section">
             <div class="video-wrapper">
                 <div id="vsl-container" class="vsl-container">
-                    <vturb-smartplayer id="vid-698ccec711e55d52a5bdc3a6"
-                        style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer>
+                    <vturb-smartplayer id="vid-698fa1e79256726183ca6857"
+                        style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
                     <script
-                        type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/players/698ccec711e55d52a5bdc3a6/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
+                        type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/players/698fa1e79256726183ca6857/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
                 </div>
             </div>
         </div>
@@ -110,7 +324,23 @@
 
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // console.log("Vision 2026 Presentation Loaded");
+
+            // Future functionality:
+            // - VSL Timer delays for CTA
+            // - Analytics events
+            // - Smooth scroll for anchors
+
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', (e) => {
+                    // Optional: Add tracking logic here before navigation
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
