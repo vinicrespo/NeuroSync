@@ -135,12 +135,20 @@
 
         .video-wrapper {
             width: 100%;
-            background-color: #000;
+            max-width: 400px;
+            /* Constrain to video width */
+            background-color: transparent;
+            /* Remove black background */
             position: relative;
-            border-radius: 12px;
+            border-radius: 16px;
+            /* Slightly more rounded */
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(11, 37, 69, 0.15);
-            /* No strict max-height constraint, let aspect ratio rule */
+            box-shadow: 0 10px 30px rgba(11, 37, 69, 0.25);
+            /* Professional shadow */
+            border: 3px solid var(--primary-blue);
+            /* Professional border */
+            margin: 0 auto;
+            /* Enhance centering */
         }
 
         .vsl-container {
@@ -250,7 +258,8 @@
             }
 
             .video-wrapper {
-                max-width: 600px;
+                max-width: 400px;
+                /* Maintain vertical constraint on desktop */
             }
         }
     </style>
