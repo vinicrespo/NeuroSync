@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player - Divine Healing Frequencies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="player-container">
+        <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+
+        <div class="player-artwork"></div>
+
+        <h1 id="player-title" class="player-title">Frequency Title</h1>
+        <p id="player-desc" class="player-desc">Loading frequency details...</p>
+
+        <div class="audio-control">
+            <!-- Universal Audio Source - Placeholder for the single audio file -->
+            <!-- Ideally this would point to the actual audio file path provided by the user if available, or a placeholder -->
+            <audio controls style="width: 100%; border-radius: 30px; outline: none;">
+                <!-- Replace 'your-audio-file.mp3' with the actual path -->
+                <source src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p style="margin-top: 15px; font-size: 0.8rem; color: rgba(255,255,255,0.5);">
+                This frequency shares the same sacred harmonic base, but each intention activates a different spiritual
+                alignment layer.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
