@@ -226,9 +226,9 @@
                 }, 3000);
 
                 setTimeout(() => {
-                    // Robust redirect: standard relative path
+                    // Robust redirect: absolute path to ensure correct folder
                     console.log("Redirecting to dashboard...");
-                    window.location.href = "dashboard.html";
+                    window.location.href = "/app/dashboard.html";
                 }, 4500);
             }
         }
