@@ -80,6 +80,17 @@ function loadFrequency(id) {
     document.getElementById('player-title').textContent = data.title;
     document.getElementById('player-desc').textContent = data.desc;
 
+    // Set the specific target text for the explanation note
+    const targetElement = document.getElementById('freq-target');
+    if (targetElement) {
+        // Extract just the core name, e.g., "Physical Restoration" from title
+        // Or just map it directly if simpler. Let's use the title for now but lowercased or adapted.
+        // Actually, just using the title is fine: "calibrated for Frequency of Physical Restoration"
+        // Let's make it cleaner: "calibrated for Physical Restoration"
+        let cleanTitle = data.title.replace('Frequency of ', '');
+        targetElement.textContent = cleanTitle;
+    }
+
     // Universal audio source
     const audioPlayer = document.querySelector('audio');
     if (audioPlayer) {
