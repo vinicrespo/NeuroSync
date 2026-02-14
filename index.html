@@ -11,6 +11,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- VTurb Preloads & Prefetches -->
+    <link rel="preload"
+        href="https://scripts.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/players/6990e4cd8f7f5267ea0ab6b0/v4/player.js"
+        as="script">
+    <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+    <link rel="preload"
+        href="https://cdn.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/6990e3a0aa67549cb8e71117/main.m3u8"
+        as="fetch">
+    <link rel="dns-prefetch" href="https://cdn.converteai.net">
+    <link rel="dns-prefetch" href="https://scripts.converteai.net">
+    <link rel="dns-prefetch" href="https://images.converteai.net">
+    <link rel="dns-prefetch" href="https://api.vturb.com.br">
 </head>
 
 <body>
@@ -21,10 +34,12 @@
 
         <div class="vsl-container">
             <div class="vsl-wrapper">
-                <!-- VSL Embed Placeholders - Replace with actual iframe if available, using placeholder for now -->
-                <div class="vsl-placeholder">
-                    <span>VSL Loading...</span>
-                </div>
+                <!-- VTurb Embed -->
+                <vturb-smartplayer id="vid-6990e4cd8f7f5267ea0ab6b0"
+                    style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
+                <script
+                    type="text/javascript"> var s = document.createElement("script"); s.src = "https://scripts.converteai.net/d21a9e1d-910e-4254-b2bc-30b12586d2ef/players/6990e4cd8f7f5267ea0ab6b0/v4/player.js", s.async = !0, document.head.appendChild(s); </script>
+                <script>!function (i, n) { i._plt = i._plt || (n && n.timeOrigin ? n.timeOrigin + n.now() : Date.now()) }(window, performance);</script>
             </div>
         </div>
 
